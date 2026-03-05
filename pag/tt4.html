@@ -55,6 +55,93 @@
             line-height: 1.6;
             color: #444;
         }
+
+.titulo {
+      text-align: center;
+      margin-bottom: 40px;
+      color: #0f172a;
+    }
+
+ 
+
+    .listas {
+      margin-bottom: 50px;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .listas h2 {
+      color: #0284c7;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+      color: #0f172a;
+      list-style: square;
+    }
+
+    ol {
+      margin-left: 25px;
+    }
+
+    ol li {
+      margin-bottom: 8px;
+      color: #0f172a;
+      font-weight: 500;
+    }
+ 
+
+    .tabelas {
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .tabelas h2 {
+      color: #0284c7;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th {
+      background: #0284c7;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #bae6fd;
+      color: #0f172a;
+    }
+
+    tr:nth-child(even) {
+      background: #f1f5f9;
+    }
+
+    caption {
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #0f172a;
+    }
+
+
     </style>
 </head>
 
@@ -68,7 +155,70 @@
     <h1>Tarefa 4 – IIº Trimestre</h1>
 
     <div class="conteudo">
-        
+        <main>
+
+  <div class="titulo">
+    <h1>Tipos de memórias do computador</h1>
+  </div>
+
+ 
+  <section class="listas">
+    <h2>RAM</h2>
+    <ul>
+      <li>DDR1</li>
+      <li>DDR2</li>
+      <li>DDR3</li>
+    </ul>
+
+    <h2>ROM</h2>
+    <ol>
+      <li>HD</li>
+      <li>SSD</li>
+     
+    </ol>
+  </section>
+
+ 
+  <section class="tabelas">
+    <h2>Tabela Simples</h2>
+    <table>
+      <caption>Notas dos Alunos</caption>
+      <tr>
+        <th>Nome</th>
+        <th>Disciplina</th>
+        <th>Nota</th>
+      </tr>
+      <tr>
+        <td>Ana</td>
+        <td>HTML</td>
+        <td>18</td>
+      </tr>
+      <tr>
+        <td>João</td>
+        <td>CSS</td>
+        <td>16</td>
+      </tr>
+    </table>
+
+    <h2>Tabela Mesclada</h2>
+    <table>
+      <caption>Horário Escolar</caption>
+      <tr>
+        <th>Dia</th>
+        <th colspan="2">Manhã</th>
+      </tr>
+      <tr>
+        <td rowspan="2">Segunda</td>
+        <td>HTML</td>
+        <td>CSS</td>
+      </tr>
+      <tr>
+        <td colspan="2">Projeto Prático</td>
+      </tr>
+    </table>
+  </section>
+
+</main>
     </div>
 
 </body>
