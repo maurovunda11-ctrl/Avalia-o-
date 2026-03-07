@@ -39,7 +39,7 @@
             color: #333;
         }
 
-        .conteudo {
+         .conteudo {
             background: #fff;
             padding: 20px;
             border: 1px solid #ddd;
@@ -55,6 +55,165 @@
             line-height: 1.6;
             color: #444;
         }
+
+        
+.cards {
+            display: flex;
+            justify-content: space-around;
+            padding: 40px 20px;
+            background: white;
+        }
+
+        .card {
+            width: 30%;
+           
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+.cardi {
+           
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 15px;
+}
+
+         
+
+        .card h3 {
+            margin-bottom: 10px;
+        }
+
+       
+        .conteudor {
+            display: flex;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .box-texto {
+            background: rgb(112, 129, 147);
+            padding: 25px;
+            border-radius: 8px;
+            width: 50%;
+        }
+
+        .box-texto h2 {
+            margin-bottom: 10px;
+            color: #f9fafb;
+        }
+
+
+        footer {
+            background-color: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+      .listas {
+      margin-bottom: 50px;
+      background: #ffffff;
+      padding: 55px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+     .listas:hover {
+      margin-bottom: 50px;
+      background: #3c4679;
+      color: #ddd;
+      padding: 70px;
+      border-radius: 52px;
+      box-shadow: 0 5px 15px rgba(117, 106, 106, 0.05);
+    }
+
+    .listas h2 {
+      color: #0284c7;
+      margin-bottom: 15px;
+    }
+
+    ul {
+      margin-left: 25px;
+      margin-bottom: 20px;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+      color: #0f172a;
+      list-style: square;
+    }
+
+    ol {
+      margin-left: 25px;
+    }
+
+    ol li {
+      margin-bottom: 8px;
+      color: #0f172a;
+      font-weight: 500;
+    }
+ 
+
+    .tabelas {
+      background: #ffffff;
+      padding: 55px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .tabelas:hover {
+      background: #485f9d;
+      padding: 25px;
+      border-radius: 52px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .tabelas h2 {
+      color: #0284c7;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    th {
+      background: #0284c7;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+    }
+
+    td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #bae6fd;
+      color: #0f172a;
+    }
+
+    tr:nth-child(even) {
+      background: #f1f5f9;
+    }
+
+    caption {
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #0f172a;
+    }
+   
+
+
     </style>
 </head>
 
@@ -67,9 +226,252 @@
 
     <h1>Tarefa 5 – IIº Trimestre</h1>
 
-    <div class="conteudo">
-       
+      <div class="conteudo">
+    <h2>Tarefa 1 – Introdução ao CSS</h2>
+
+    <p>
+        O CSS (<strong>Cascading Style Sheets</strong>, ou Folhas de Estilo em Cascata)
+        é uma linguagem utilizada para definir a aparência e o layout de páginas web.
+        Ele trabalha em conjunto com o HTML, sendo responsável pela parte visual dos
+        sites, como cores, fontes, tamanhos, espaçamentos e posicionamento dos
+        elementos.
+    </p>
+
+    <p>
+        Enquanto o HTML é usado para estruturar o conteúdo de uma página, o CSS
+        permite separar o conteúdo da apresentação, tornando os sites mais
+        organizados, flexíveis e fáceis de manter.
+    </p>
+
+    <h3>Definição de CSS</h3>
+
+    <p>
+        CSS é uma linguagem de estilização que controla como os elementos HTML
+        devem ser exibidos na tela, no papel ou em outros meios. Com o CSS é possível
+        criar layouts modernos, responsivos e visualmente agradáveis.
+    </p>
+
+    <h3>Conceitos Básicos do CSS</h3>
+
+    <p>
+        Os principais conceitos do CSS incluem:
+    </p>
+
+    <ul>
+        <li><strong>Seletores:</strong> indicam quais elementos HTML receberão o estilo.</li>
+        <li><strong>Propriedades:</strong> definem o que será alterado, como cor ou tamanho.</li>
+        <li><strong>Valores:</strong> especificam como a propriedade será aplicada.</li>
+        <li><strong>Cascata:</strong> determina a prioridade das regras de estilo.</li>
+        <li><strong>Herança:</strong> permite que alguns estilos sejam herdados dos elementos pais.</li>
+    </ul>
+
+    <p>
+        O uso correto do CSS é fundamental para o desenvolvimento de páginas web
+        profissionais, acessíveis e compatíveis com diferentes dispositivos, como
+        computadores, tablets e telemóveis.
+    </p>
+</div>
+<br><br><br>
+
+  <div class="conteudo">
+    <h2>Tarefa – Seletores CSS</h2>
+
+    <p>
+        Os seletores CSS são utilizados para indicar quais elementos HTML
+        receberão estilos. Eles permitem aplicar regras de formatação de forma
+        precisa, controlando a aparência de textos, imagens, caixas e outros
+        componentes da página.
+    </p>
+
+    <h3>Definição de Seletores CSS</h3>
+
+    <p>
+        Um seletor CSS é a parte da regra de estilo que seleciona o elemento
+        HTML que será estilizado. Através dos seletores, o desenvolvedor define
+        exatamente onde o CSS será aplicado.
+    </p>
+
+    <h3>Conceito de Seletores CSS</h3>
+
+    <p>
+        O conceito dos seletores baseia-se na ligação entre o CSS e o HTML.
+        Cada seletor corresponde a um ou mais elementos da página, permitindo
+        que o estilo seja aplicado de forma organizada e eficiente.
+    </p>
+
+    <h3>Principais Tipos de Seletores</h3>
+
+    <ul>
+        <li>
+            <strong>Seletor de elemento:</strong> seleciona todos os elementos
+            HTML de um determinado tipo.
+            <br>
+            Exemplo: <code>p { color: blue; }</code>
+        </li>
+
+        <li>
+            <strong>Seletor de classe:</strong> seleciona elementos que possuem
+            uma classe específica.
+            <br>
+            Exemplo: <code>.caixa { background: #eee; }</code>
+        </li>
+
+        <li>
+            <strong>Seletor de ID:</strong> seleciona um único elemento através
+            do seu identificador.
+            <br>
+            Exemplo: <code>#titulo { font-size: 24px; }</code>
+        </li>
+
+        <li>
+            <strong>Seletor universal:</strong> aplica estilo a todos os elementos
+            da página.
+            <br>
+            Exemplo: <code>* { margin: 0; padding: 0; }</code>
+        </li>
+    </ul>
+
+    <h3>Modos de Uso dos Seletores CSS</h3>
+
+    <p>
+        Os seletores CSS podem ser utilizados de diferentes formas, dependendo
+        da necessidade do projeto:
+    </p>
+
+    <ul>
+        <li>
+            <strong>CSS inline:</strong> aplicado diretamente no elemento HTML
+            através do atributo <code>style</code>.
+        </li>
+
+        <li>
+            <strong>CSS interno:</strong> definido dentro da tag
+            <code>&lt;style&gt;</code> no arquivo HTML.
+        </li>
+
+        <li>
+            <strong>CSS externo:</strong> criado em um arquivo separado
+            (<code>.css</code>) e ligado ao HTML através da tag
+            <code>&lt;link&gt;</code>.
+        </li>
+    </ul>
+
+    <p>
+        O uso correto dos seletores CSS torna o código mais organizado,
+        reutilizável e fácil de manter, sendo um dos fundamentos essenciais
+        do desenvolvimento web.
+    </p>
+</div>
+<br><br><br>
+
+<section class="cards">
+    <div >
+        <img src="../files/transferir (1).jpeg" class="cardi"> 
+        
+      </div>
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+    <div  >
+        <img src="../files/transferir (2).jpeg"  class="cardi">
+         
+      </div>
+<div  >
+        <img src="../files/transferir.jpeg"  class="cardi">
+         
+      </div>
+    
+</section>
+
+<section class="conteudor">
+    <div class="box-texto">
+        <h2>Memória RAM</h2>
+
+        <p>
+           DDR1
+        </p>
+
+        <p>
+            DDR2
+        </p>
+
+        <p>
+         DDR3
     </div>
+
+    <div class="box-texto">
+        <h3>Memória ROM</h3>
+
+        <p>HD</p>
+        <p>SSD</p>
+        
+
+        <p>
+        HDD    
+        </p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 - Tipos de memórias</p>
+    <p>Desenvolvido por Mauro Vunda</p>
+</footer>
+ <br><br><br>
+
+    <section class="listas">
+    <h2>RAM</h2>
+    <ul>
+      <li>DDR1</li>
+      <li>DDR2</li>
+      <li>DDR3</li>
+    </ul>
+
+    <h2>ROM</h2>
+    <ol>
+      <li>HD</li>
+      <li>SSD</li>
+     
+    </ol>
+  </section>
+
+ 
+  <section class="tabelas">
+    <h2>Tabela Simples</h2>
+    <table>
+      <caption>Notas dos Alunos</caption>
+      <tr>
+        <th>Nome</th>
+        <th>Serviços</th>
+        <th>Preço</th>
+      </tr>
+      <tr>
+        <td>Mauro</td>
+        <td>Criação de website</td>
+        <td>200.000</td>
+      </tr>
+      <tr>
+        <td>Vunda</td>
+        <td>Marcinaria</td>
+        <td>Variável</td>
+      </tr>
+    </table>
+
+    <h2>Tabela Mesclada</h2>
+    <table>
+      <caption>Horário Escolar</caption>
+      <tr>
+        <th>Dia</th>
+        <th colspan="2">Manhã</th>
+      </tr>
+      <tr>
+        <td rowspan="2">Segunda</td>
+        <td>HTML</td>
+        <td>CSS</td>
+      </tr>
+      <tr>
+        <td colspan="2">Projeto Prático</td>
+      </tr>
+    </table>
+  </section>
 
 </body>
 </html>
