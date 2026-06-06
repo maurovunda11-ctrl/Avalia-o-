@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela - Alunos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        .status-aprovado {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .status-recurso {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .status-reprovado {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        .nav-buttons {
+            margin-top: 20px;
+        }
+        .nav-buttons a {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            margin-right: 10px;
+            display: inline-block;
+            border-radius: 4px;
+        }
+        .nav-buttons a:hover {
+            background-color: #555;
+        }
+        .btn-clear {
+            background-color: #ffc107;
+            color: #333;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .btn-clear:hover {
+            background-color: #e0a800;
+        }
+        .info {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabela de Alunos</h1>
+
+    <button class="btn-clear" onclick="clearAll()">🗑️ Limpar Todos os Alunos</button>
+
+    <table id="studentsTable">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Disciplina</th>
+                <th>1º Trim</th>
+                <th>2º Trim</th>
+                <th>3º Trim</th>
+                <th>Média</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr><td colspan="8" style="text-align: center;">Nenhum aluno cadastrado</td></tr>
+        </tbody>
+    </table>
+
+    <div class="nav-buttons">
+        <a href="ttt1.html">📝 Voltar ao Formulário</a>
+        <a href="ttt3.html">📈 Ver Resultados</a>
+    </div>
+    <div class="info" id="info"></div>
+
+    <script>
+        function getAlunos() {
+            const saved = localStorage.getItem('alunos');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function saveAlunos(alunos) {
+            localStorage.setItem('alunos', JSON.stringify(alunos));
+        }
+
+        function calcularMedia(nota1, nota2, nota3) {
+            return (nota1 + nota2 + nota3) / 3;
+        }
+
+        function getStatus(media) {
+            if (media >= 10) return 'Aprovado';
+            if (media >= 8) return 'Recurso';
+            return 'Reprovado';
+        }
+
+        function getStatusClass(status) {
+            if (status === 'Aprovado') return 'status-aprovado';
+            if (status === 'Recurso') return 'status-recurso';
+            return 'status-reprovado';
+        }
+
+        function updateTable() {
+            const alunos = getAlunos();
+            const tbody = document.getElementById('tableBody');
+            const info = document.getElementById('info');
+
+            info.textContent = `Total de alunos: ${alunos.length}`;
+
+            if (alunos.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" style="text-align: center;">Nenhum aluno cadastrado</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = alunos.map((aluno, index) => {
+                const media = calcularMedia(aluno.nota1, aluno.nota2, aluno.nota3);
+                const status = getStatus(media);
+                const statusClass = getStatusClass(status);
+                return `
+                    <tr>
+                        <td>${aluno.nome}</td>
+                        <td>${aluno.disciplina}</td>
+                        <td>${aluno.nota1.toFixed(1)}</td>
+                        <td>${aluno.nota2.toFixed(1)}</td>
+                        <td>${aluno.nota3.toFixed(1)}</td>
+                        <td><strong>${media.toFixed(1)}</strong></td>
+                        <td><span class="${statusClass}">${status}</span></td>
+                        <td><button class="delete-btn" onclick="deleteStudent(${index})">Excluir</button></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function deleteStudent(index) {
+            if (confirm('Tem certeza que deseja excluir este aluno?')) {
+                const alunos = getAlunos();
+                alunos.splice(index, 1);
+                saveAlunos(alunos);
+                updateTable();
+            }
+        }
+
+        function clearAll() {
+            if (confirm('⚠️ ATENÇÃO! Isso apagará TODOS os alunos. Continuar?')) {
+                localStorage.removeItem('alunos');
+                updateTable();
+            }
+        }
+
+        updateTable();
+    </script>
+</body>
+</html>
