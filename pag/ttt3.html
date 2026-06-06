@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado - Alunos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        .card {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .card h3 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        .card p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        .media-list {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .media-item {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .media-item:last-child {
+            border-bottom: none;
+        }
+        .media-info {
+            flex: 1;
+        }
+        .media-nome {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .media-disciplina {
+            color: #666;
+            font-size: 13px;
+        }
+        .notas {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+        .media-valor {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .status {
+            font-size: 13px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .nav-buttons {
+            margin-top: 20px;
+        }
+        .nav-buttons a {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            margin-right: 10px;
+            display: inline-block;
+            border-radius: 4px;
+        }
+        .nav-buttons a:hover {
+            background-color: #555;
+        }
+        .aprovado { color: #28a745; }
+        .recurso { color: #ffc107; }
+        .reprovado { color: #dc3545; }
+        .status-text-aprovado { color: #28a745; }
+        .status-text-recurso { color: #856404; }
+        .status-text-reprovado { color: #dc3545; }
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultado das Médias</h1>
+
+    
+
+    <div class="media-list" id="mediaList">
+        <div class="empty">Nenhum aluno cadastrado</div>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="ttt1.html">Voltar ao Formulário</a>
+        <a href="ttt2.html">Ver Tabela</a>
+    </div>
+
+    <script>
+        function getAlunos() {
+            const saved = localStorage.getItem('alunos');
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        function calcularMedia(nota1, nota2, nota3) {
+            return (nota1 + nota2 + nota3) / 3;
+        }
+
+        function getStatus(media) {
+            if (media >= 10) return 'Aprovado';
+            if (media >= 8) return 'Recurso';
+            return 'Reprovado';
+        }
+
+        function getStatusClass(status) {
+            if (status === 'Aprovado') return 'aprovado';
+            if (status === 'Recurso') return 'recurso';
+            return 'reprovado';
+        }
+
+        function getStatusTextClass(status) {
+            if (status === 'Aprovado') return 'status-text-aprovado';
+            if (status === 'Recurso') return 'status-text-recurso';
+            return 'status-text-reprovado';
+        }
+
+        function updateResults() {
+            const alunos = getAlunos();
+            const mediaList = document.getElementById('mediaList');
+
+            if (alunos.length === 0) {
+                mediaList.innerHTML = '<div class="empty">Nenhum aluno cadastrado</div>';
+                document.getElementById('totalAlunos').textContent = 'Total de alunos: 0';
+                document.getElementById('mediaGeral').textContent = 'Média geral: 0';
+                document.getElementById('aprovados').textContent = '✅ Aprovados (≥10): 0';
+                document.getElementById('recurso').textContent = '⚠️ Recurso (8 a 9): 0';
+                document.getElementById('reprovados').textContent = '❌ Reprovados (0 a 7): 0';
+                return;
+            }
+
+            let somaMedias = 0;
+            let aprovadosCount = 0;
+            let recursoCount = 0;
+            let reprovadosCount = 0;
+
+            mediaList.innerHTML = alunos.map(aluno => {
+                const media = calcularMedia(aluno.nota1, aluno.nota2, aluno.nota3);
+                somaMedias += media;
+                const status = getStatus(media);
+                const statusClass = getStatusClass(status);
+                const textClass = getStatusTextClass(status);
+                
+                if (status === 'Aprovado') aprovadosCount++;
+                else if (status === 'Recurso') recursoCount++;
+                else reprovadosCount++;
+
+                return `
+                    <div class="media-item">
+                        <div class="media-info">
+                            <div class="media-nome">${aluno.nome}</div>
+                            <div class="media-disciplina">${aluno.disciplina}</div>
+                            <div class="notas">Notas: ${aluno.nota1.toFixed(1)} | ${aluno.nota2.toFixed(1)} | ${aluno.nota3.toFixed(1)}</div>
+                        </div>
+                        <div>
+                            <span class="media-valor ${textClass}">${media.toFixed(1)}</span>
+                            <span class="status ${textClass}">(${status})</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            const mediaGeral = somaMedias / alunos.length;
+            document.getElementById('totalAlunos').textContent = `Total de alunos: ${alunos.length}`;
+            document.getElementById('mediaGeral').textContent = `Média geral: ${mediaGeral.toFixed(1)}`;
+            document.getElementById('aprovados').textContent = `✅ Aprovados (≥10): ${aprovadosCount}`;
+            document.getElementById('recurso').textContent = `⚠️ Recurso (8 a 9): ${recursoCount}`;
+            document.getElementById('reprovados').textContent = `❌ Reprovados (0 a 7): ${reprovadosCount}`;
+        }
+
+        updateResults();
+    </script>
+</body>
+</html>
